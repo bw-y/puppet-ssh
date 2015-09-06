@@ -1,0 +1,6 @@
+Host *
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication <%= @ssh_gssapiauth %>
+    GSSAPIDelegateCredentials no
+    StrictHostKeyChecking <%= @ssh_firstcheck %>

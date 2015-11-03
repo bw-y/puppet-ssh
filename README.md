@@ -34,14 +34,19 @@
 由于模块在安装ssh包的时候会用到源，请使用之前确认软件源正常工作
 
 ### Beginning with ssh
+
 If you just want server and client being installed and use with default option
+
 ```
-node 'node1.hypers.com' {
+node 'node1.bw-y.com' {
   class { '::ssh': }
 }
 ```
+
 ## Usage
+
 If you want managed ssh certain options:
+
 ```
 node 'node1.bw-y.com' {
   class { '::ssh':
@@ -61,6 +66,7 @@ node 'node1.bw-y.com' {
 * ssh: Main class, includes all other classes.
 
 #### Private Classes
+
 * ssh::install   currently install openssh
 * ssh::config    manages configuration
 * ssh::service   manages service 
@@ -70,28 +76,20 @@ node 'node1.bw-y.com' {
 The following parameters are available in the ::ssh class:
 
 #### `sshd_port`
-
 配置一个或多个ssh服务的监听端口. 有效数据类型: 数组. 默认值: [ '22' ]
-
 #### `sshd_servers`
-
 配置一个或多个ssh服务的监听IP. 有效数据类型: 数组. 默认值: [ '0.0.0.0' ]
-
 #### `sshd_usedns`
-
 ssh DNS解析. 有效值 no:关闭；yes:开启.  默认值 no
-
+#### `sshd_sftp`
+是否开启内置sftp, 有效值 true:开启 false:不开启  默认值: false
 #### `ssh_gssapiauth`
-
 ssh客户端的GSSAPI认证，关闭可以提升ssh连接速度。  有效值 no:关闭；yes:开启.  默认值 no
-
 #### `ssh_ssh_firstcheck`
-
 ssh客户端首次连接时是否询问yes/no，关闭则不询问。  有效值 no:关闭；yes:开启.  默认值 no
-
+#### `stage`
+执行顺序，见stdlib::stages
 
 ## Limitations
 
-目前仅支持系统如:  rhel/centos(5/6) , ubuntu12.04/14.04
-
-## Development
+目前仅支持系统如:  rhel/centos(5/6) , ubuntu(10.04/12.04/14.04)

@@ -7,8 +7,8 @@ class ssh::params {
   $service_ensure = 'running'
   $service_enable = true
 
-  case $::osfamily {
-    'Debian' : {
+  case $::operatingsystem {
+    'Ubuntu' : {
        $sshd_temp    = 'ssh/deb-conf-sshd.erb'
        $ssh_temp     = 'ssh/deb-conf-ssh.erb'
        $sshd_mode    = '0644'
@@ -16,7 +16,7 @@ class ssh::params {
        $pkgs         = flatten([$pub_pkgs, $pri_pkgs])
        $service_name = 'ssh'
     }
-    'RedHat' : {
+    'RedHat','CentOS' : {
        $sshd_temp    = 'ssh/rpm-conf-sshd.erb'
        $ssh_temp     = 'ssh/rpm-conf-ssh.erb'
        $sshd_mode    = '0600'
